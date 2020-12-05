@@ -45,3 +45,5 @@
        
 
 <!-------------------------------- RUN CODE FROM HOST TO VAGRANT SERVER ----------------------------------->
+
+vagrant@ubuntu-bionic:/vagrant$ python3 hello_world.py
