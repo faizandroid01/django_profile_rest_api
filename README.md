@@ -72,6 +72,7 @@
       after successful activation ->  (djangoenv) vagrant@ubuntu-bionic:/vagrant$
 
 -   Deactivate the virtualEnvironment
+
       deactivate
 
 ---------------------------------------------------------------------------------------------------------------------------------------------         
@@ -121,7 +122,6 @@
 
    python manage.py runserver 0.0.0.0:8000
 
-
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 # Create Models
@@ -131,8 +131,6 @@
       To use the default user Model , django suggest below imports 
        
          from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-
-
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -150,17 +148,15 @@
 
 # Create Model Manager        
  
- - Model Manager helps Django to work with customer models with the command line tools
+ - Model Manager helps Django to work with custom models with the command line tools
  - Basically it has the helper methods for the model.
-
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
-# Advice Django to user UserProfile entity as the USER MODEL 
+# Advice Django to use UserProfile entity as the USER MODEL 
 
  - In settings.py ,
      AUTH_USER_MODEL = 'profiles_api.UserProfile'
-
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -169,6 +165,16 @@
  - The way Django manages the database is through migration file.
  - It containes all the migration required to be process to match the database with the updated django models 
  - So every time , a model is changed or newly models are added , a new migration file has to be genrated and pushed
+
+   **To create Migration file specifically for a project**
+
+      - python manage.py makemigrations <app_name>
+        eg - python manage.py makemigrations profiles_api - (generates the migration file for updated models )
+      - It generates a file alike -0001_initial.py      
+   
+   **To run Migration file for entire project**
+     
+      - python manage.py migrate
 
 
 

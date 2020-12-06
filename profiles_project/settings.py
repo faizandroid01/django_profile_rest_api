@@ -121,3 +121,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# This advices the django to use UserProfile entity in profile_api to use for all authentication and user registration.
+AUTH_USER_MODEL = 'profiles_api.UserProfile'
