@@ -14,6 +14,9 @@
 *  Steps to create Vagrant file 
    cmd -> vagrant init <servername/servertype>
         eg : vagrant init ubuntu/bionic64
+
+*  Below url can be used to search about box
+         https://vagrantcloud.com/search        
    
     (Other required configuration of a Vagrantfile can be copied from this project)
 
@@ -119,7 +122,55 @@
    python manage.py runserver 0.0.0.0:8000
 
 
-    
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+# Create Models
+
+   **Django has default user Model and Django Admin**
+
+      To use the default user Model , django suggest below imports 
+       
+         from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+# Create Models  
+
+   eg: 
+     class UserProfile (AbstractBaseUser, PermissionsMixin):
+        """Database model for users in the system"""
+        email = model.EmailField(max_length=255, unique=True)
+        name = models.CharField(max_length=255)
+        is_active = models.BooleanField(default=True)
+        is_staff = models.BooleanField(defaut=False)
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+# Create Model Manager        
+ 
+ - Model Manager helps Django to work with customer models with the command line tools
+ - Basically it has the helper methods for the model.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+# Advice Django to user UserProfile entity as the USER MODEL 
+
+ - In settings.py ,
+     AUTH_USER_MODEL = 'profiles_api.UserProfile'
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+# Django Migrations File
+
+ - The way Django manages the database is through migration file.
+ - It containes all the migration required to be process to match the database with the updated django models 
+ - So every time , a model is changed or newly models are added , a new migration file has to be genrated and pushed
+
+
 
 
 
