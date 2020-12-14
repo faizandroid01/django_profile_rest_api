@@ -207,9 +207,99 @@
    
     cmd : python manage.py createsuperuser
   
-    - requires email 
-    - requires name 
-    - requires password
+    - requires email - (here : faizrocks9211@gmail.com)
+    - requires name - (here : faiz)
+    - requires password - (here : faiz123)
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------  
+
+# Registering models in admin for an app
+
+  **Command to create super user**
+
+     cmd : admin.site.register(models.UserProfile)
+
+     - import models from project app 
+
+---------------------------------------------------------------------------------------------------------------------------------------------  
+
+# APIVIEWS 
+
+  - An ApiView allows us to define methods that matches standard Http methods.
+  - Gives the most of the control over logic (can be considered as service class as in Java)
+    - Perfect for implementing logic
+    - Calling other API's
+    - Working with local files
+
+    **Example1**
+
+    eg :         def get(self ,request ,format=None):
+                     """Return one or more items"""
+                     return Response({'list': 'items'})
+
+    similarly:   def post(self ,request ,format=None):
+                 def put(self ,request ,format=None):
+                 def patch(self ,request ,format=None):
+                 def delete(self ,request ,format=None):         
+
+    **Example2**
+
+    from rest_framework.views import APIView
+    from rest_framework.response import Response
+
+    class HelloApiView(APIView):
+    """APi View to test Hello World"""
+
+    def get(self, request ,format=None):
+        """Test an APIView"""
+        an_apiview = [
+            'Uses HTTP functions as method (get, post, put ,patch, delete)',
+            'Is similar to a traditional Django view',
+            'gives the most control over your application logic',
+        ]
+
+        return Response({'message':'Hello!', 'an_apiview': an_apiview })
+  
+
+ 
+---------------------------------------------------------------------------------------------------------------------------------------------  
+
+# URLS.PY for an PROJECT_APP 
+
+  - file manages all the call for various functions of apiview of a certain project (can be a project or an app)
+  - .as_view -> django renders the view from views 
+
+  **Example**
+
+      from django.urls import path
+      from profiles_api import views
+
+      urlpatterns = [
+          path('hello-view/', views.HelloApiView.as_view()),
+      ]
+
+  **Example2**
+
+      from django.urls import path, include
+      from . import views
+      from rest_framework import routers
+
+      router = routers.DefaultRouter()
+      router.register('courses',views.CourseView)
+
+      urlpatterns = [
+        path('',include(router.urls)),
+      ]
+
+  **TEST FOR APIVIEW**    
+
+      - Run Server nd hit the api at 
+          http://localhost:8000/api/hello-view/
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 
