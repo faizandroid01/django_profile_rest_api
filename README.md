@@ -234,32 +234,33 @@
 
     **Example1**
 
-    eg :         def get(self ,request ,format=None):
-                     """Return one or more items"""
-                     return Response({'list': 'items'})
+        def get(self ,request ,format=None):
+            """Return one or more items"""
+            return Response({'list': 'items'})
 
-    similarly:   def post(self ,request ,format=None):
-                 def put(self ,request ,format=None):
-                 def patch(self ,request ,format=None):
-                 def delete(self ,request ,format=None):         
+        similarly:
+            def post(self ,request ,format=None):
+            def put(self ,request ,format=None):
+            def patch(self ,request ,format=None):
+            def delete(self ,request ,format=None):         
 
     **Example2**
 
-    from rest_framework.views import APIView
-    from rest_framework.response import Response
+        from rest_framework.views import APIView
+        from rest_framework.response import Response
 
-    class HelloApiView(APIView):
-    """APi View to test Hello World"""
+        class HelloApiView(APIView):
+        """APi View to test Hello World"""
 
-    def get(self, request ,format=None):
-        """Test an APIView"""
-        an_apiview = [
-            'Uses HTTP functions as method (get, post, put ,patch, delete)',
-            'Is similar to a traditional Django view',
-            'gives the most control over your application logic',
-        ]
+        def get(self, request ,format=None):
+            """Test an APIView"""
+            an_apiview = [
+                'Uses HTTP functions as method (get, post, put ,patch, delete)',
+                'Is similar to a traditional Django view',
+                'gives the most control over your application logic',
+            ]
 
-        return Response({'message':'Hello!', 'an_apiview': an_apiview })
+            return Response({'message':'Hello!', 'an_apiview': an_apiview })
   
 
  
