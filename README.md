@@ -204,7 +204,7 @@
   - Make sure vagrant server is up and running and the virtual environment is up and running.
 
   **Command to create super user**
-
+   
     cmd : python manage.py createsuperuser
   
     - requires email 
