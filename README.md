@@ -8,7 +8,12 @@
 -  File is created through Vagrant CLI
 -  Vagrant works by creating a bi-synchronized directory on vagrant server, that updates itself with all of the changes from host
    folder and vice versa.
+
+   **Pre-requisite for Vagrant CLI to inititate**
    
+-  (On Windows set Windows Power shell path before vagrant up)  
+     PATH = C:\Windows\System32\WindowsPowerShell\v1.0 ;
+
    **Create Vagrant file**
 
 *  Steps to create Vagrant file 
@@ -64,7 +69,7 @@
      sudo apt-get install python3-venv - (Install python3-env if Required)
 
 -   Creating the virtualEnvironment
-      vagrant@ubuntu-bionic:/vagrant$ python -m venv ~/<env_name>    -- python/python3 -- <env_name> = djangoenv
+      vagrant@ubuntu-bionic:/vagrant$ python -m venv ~/<env_name>    -- python/python3 -- <env_name> = django_env
 
 -   Activate the virtual environment 
       vagrant@ubuntu-bionic:/vagrant$ source ~/djangoenv/bin/activate
@@ -162,6 +167,11 @@
 
 # Django Migrations File
 
+  * Pre-requisite to make migrations
+    - vagrant server should be up and running -(vagrant up & vagrant ssh)
+    - environment should be activted -(source ~/djangoenv/bin/activate)
+
+
  - The way Django manages the database is through migration file.
  - It containes all the migration required to be process to match the database with the updated django models 
  - So every time , a model is changed or newly models are added , a new migration file has to be genrated and pushed
@@ -177,6 +187,28 @@
       - python manage.py migrate
 
 
+---------------------------------------------------------------------------------------------------------------------------------------------  
+
+# Set Custom User Model
+    
+- Import used in the model class 
+       - from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+
+- This advices the django to use UserProfile entity in profile_api to use for all authentication and user registration.
+     - AUTH_USER_MODEL = 'profiles_api.UserProfile'
+
+---------------------------------------------------------------------------------------------------------------------------------------------  
+
+# Creating superuser by using Django command line tool.
+
+  - Make sure vagrant server is up and running and the virtual environment is up and running.
+
+  **Command to create super user**
+     
+    cmd : python manage.py createsuperuser
+    - requires email 
+    - requires name 
+    - requires password
 
 
 
