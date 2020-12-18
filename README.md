@@ -341,11 +341,11 @@
 
 ## NORMAL WORK FLOW ##
 
-  **Without Serializer**
-  - MODEL* => ApiView => App {Urls.py} => Projects {Urls.py} .
+   **Without Serializer**
+       MODEL* => ApiView => App {Urls.py} => Projects {Urls.py} .
 
-  **With Serializer**
-  - MODEL* =>Serializer => ApiView => App {Urls.py} => Projects {Urls.py} .
+   **With Serializer**
+       MODEL* =>Serializer => ApiView => App {Urls.py} => Projects {Urls.py} .
 
-      '*' can be or cannot be part, only api view and its registration in the urls.py @appLevel and @projectLevel is responsible for an API run
+    '*' can be or cannot be part, only api view and its registration in the urls.py @appLevel and @projectLevel is responsible for an API run
     
