@@ -248,6 +248,7 @@
 
         from rest_framework.views import APIView
         from rest_framework.response import Response
+        
 
         class HelloApiView(APIView):
         """APi View to test Hello World"""
@@ -262,6 +263,28 @@
 
             return Response({'message':'Hello!', 'an_apiview': an_apiview })
   
+    **Example3 With Serializer validation**
+
+        from rest_framework.views import APIView
+        from rest_framework.response import Response
+        from rest_framework import status
+
+        class HelloApiView(APIView):
+        """APi View to test Hello World"""
+
+        serializer_class = serializers.HelloSerializer
+
+        def post(self,request):
+           """Creates a hello message with our name"""
+
+           serializer = self.serializer_class(data=request.data)
+
+           if serializer.is_valid():
+                name = serializer.validated_data.get('name')
+                message = f'Hello {name}'
+                return Response ({'message': message})
+            else:
+                return Response(serializer.errors,status = status .HTTP_400_BAD_REQUEST)
 
  
 ---------------------------------------------------------------------------------------------------------------------------------------------  
@@ -300,8 +323,29 @@
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
+# SEARIALIZERS 
 
+   - is a feature from the Django Framework , that converts the input in to python object and vice versa.
+   - It is required to access the 'post' or 'put' request content from the data input.
+   - it also validates the input of the request models , i.e it passess through some certain validation rules
 
+   **Example1**
 
+      from rest_framework import serializers
 
+      class HelloSerializer(serializers.Serializer):
+          """Serializes a name field for testing our APIView"""
+          name = serializers.CharField(max_length=10)  => (This seriralizer field "name" is mandated to be a CharField of 10 length )
+    
+---------------------------------------------------------------------------------------------------------------------------------------------
 
+## NORMAL WORK FLOW ##
+
+  **Without Serializer**
+  - MODEL* => ApiView => App {Urls.py} => Projects {Urls.py} .
+
+  **With Serializer**
+  - MODEL* =>Serializer => ApiView => App {Urls.py} => Projects {Urls.py} .
+
+      '*' can be or cannot be part, only api view and its registration in the urls.py @appLevel and @projectLevel is responsible for an API run
+    
