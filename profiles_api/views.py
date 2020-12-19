@@ -45,3 +45,4 @@ class HelloApiView(APIView):
     def delete(self, request , pk=None):
         """deletes an object based on pk"""            
         return Response({'message':'DELETE'})
+
