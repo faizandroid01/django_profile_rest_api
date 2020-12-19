@@ -349,3 +349,31 @@
 
     '*' can be or cannot be part, only api view and its registration in the urls.py @appLevel and @projectLevel is responsible for an API run
     
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+# HTTP METHODS
+
+   **GET**
+         def post(self,request):
+           """Creates a hello message with our name"""
+           return Response({'message':'GET'})
+
+   **POST**
+         def post(self,request):
+           """Creates a hello message with our name"""
+           return Response({'message':'POST'})
+
+   **PUT**
+         def put(self, request , pk=None):
+          """Handles update scenario """
+          return Response({'message':'PUT'})
+
+   **PATCH**
+        def patch(self, request , pk=None):
+          """Handles partial update scenario"""
+           return Response({'message':'PATCH'})
+
+   **DELETE**
+        def delete(self, request , pk=None):
+          """deletes an object based on pk"""            
+          return Response({'message':'DELETE'})
