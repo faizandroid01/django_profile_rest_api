@@ -222,8 +222,32 @@
 
      - import models from project app 
 
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+# SEARIALIZERS 
+
+   - is a feature from the Django Framework , that converts the input in to python object and vice versa.
+   - It is required to access the 'post' or 'put' request content from the data input.
+   - it also validates the input of the request models , i.e it passess through some certain validation rules
+
+   **Example1**
+
+      from rest_framework import serializers
+
+      class HelloSerializer(serializers.Serializer):
+          """Serializes a name field for testing our APIView"""
+          name = serializers.CharField(max_length=10)  => (This seriralizer field "name" is mandated to be a CharField of 10 length )
+    
 ---------------------------------------------------------------------------------------------------------------------------------------------  
 
+# HELPERCLASSES
+ - These are the classess in django framework that helps us to write the logic 
+
+  * API VIEWS
+  * VIEW SETS
+
+----------------------------------------------------------------------------------------------------------------------------------------------
 # APIVIEWS 
 
   - An ApiView allows us to define methods that matches standard Http methods.
@@ -321,22 +345,7 @@
       - Run Server nd hit the api at 
           http://localhost:8000/api/hello-view/
 
----------------------------------------------------------------------------------------------------------------------------------------------
 
-# SEARIALIZERS 
-
-   - is a feature from the Django Framework , that converts the input in to python object and vice versa.
-   - It is required to access the 'post' or 'put' request content from the data input.
-   - it also validates the input of the request models , i.e it passess through some certain validation rules
-
-   **Example1**
-
-      from rest_framework import serializers
-
-      class HelloSerializer(serializers.Serializer):
-          """Serializes a name field for testing our APIView"""
-          name = serializers.CharField(max_length=10)  => (This seriralizer field "name" is mandated to be a CharField of 10 length )
-    
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 # WORK FLOW
@@ -357,7 +366,7 @@
 
    **GET**
       
-    def post(self,request):
+    def get(self,request):
         """Creates a hello message with our name"""
         return Response({'message':'GET'})
 
@@ -384,3 +393,57 @@
     def delete(self, request , pk=None):
         """deletes an object based on pk"""            
         return Response({'message':'DELETE'})
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+# VIEWSETS 
+
+  - Just like apiviews , ViewSets allows to write the logic for an api.  
+  - Takes care of lot of typical logic pre ahead .
+   - list(self,request): 
+   - create(seld ,request):
+   - retrieve(selef ,request , pk=None):
+   - update(self, request, pk=None):
+   - partial_update(self ,request, pk=None):
+   - destroy(self, request , pk=None): 
+
+  - Perfect for standard database operations .
+  - Fastest way to make a database interface .
+
+    **Usability of Viewset over ApiView**
+      - A simple CRUD interface to database
+      - A quick and simple API
+      - Little to no customization on the logic
+      - Working with standard data structure
+
+  **Creating a viewset**
+     class HelloViewSet(viewsets.ViewSet):
+    """Test Api ViewSet"""
+
+      def list(self, request):
+        """Return a list of current viewset"""
+
+        viewset_list = [
+            'User\'s action (list,create,retrieve ,update , partial_update)'
+            'Automatically maps to the urls using Routers.',
+            'Provides more functionality with less code.',
+        ]
+
+        return Response({'message':'Hello From ViewSet' , 'viewset':viewset_list})
+
+  **Registering a viewset**
+    
+    In Urls.py (@appLevel)
+    
+    xtra imports:
+       from django.urls import include 
+       from rest_framework.routers import DefaultRouter
+
+       router = DefaultRouter()
+       router.register('hello-viewset', views.HelloViewSet, base_name='hello-viewset')
+
+       url_pattern = [
+         path ('', include(router.urls))
+       ]
+
