@@ -432,6 +432,31 @@
 
         return Response({'message':'Hello From ViewSet' , 'viewset':viewset_list})
 
+    **Example1**
+
+      def list(self, request):
+        """Return a list of current viewset"""
+
+        viewset_list = [
+            'User\'s action (list,create,retrieve ,update , partial_update)'
+            'Automatically maps to the urls using Routers.',
+            'Provides more functionality with less code.',
+        ]
+
+        return Response({'message':'Hello From ViewSet' , 'viewset':viewset_list})  
+
+    **Possible actions and test at**
+      - list  @ base Url call ex - http://localhost:8000/api/hello-viewset/
+      - create @ base Url call ex - http://localhost:8000/api/hello-viewset/ 
+
+      call for below functionalities happens at request param kind of id or pathvariable instance like ::
+
+      - retrieve @ ex - http://localhost:8000/api/hello-viewset/5/
+      - update @ call ex - http://localhost:8000/api/hello-viewset/5/
+      - partial_update ex - http://localhost:8000/api/hello-viewset/5/
+      - destroy ex - http://localhost:8000/api/hello-viewset/5/
+              
+
   **Registering a viewset**
     
     In Urls.py (@appLevel)
@@ -441,7 +466,7 @@
        from rest_framework.routers import DefaultRouter
 
        router = DefaultRouter()
-       router.register('hello-viewset', views.HelloViewSet, base_name='hello-viewset')
+       router.register('hello-viewset', views.HelloViewSet, basename='hello-viewset')
 
        url_pattern = [
          path ('', include(router.urls))
