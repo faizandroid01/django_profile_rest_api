@@ -342,7 +342,7 @@
 
   **TEST FOR APIVIEW**    
 
-      - Run Server nd hit the api at 
+      - Run Server and hit the api at 
           http://localhost:8000/api/hello-view/
 
 
@@ -401,12 +401,12 @@
 
   - Just like apiviews , ViewSets allows to write the logic for an api.  
   - Takes care of lot of typical logic pre ahead .
-   - list(self,request): 
-   - create(seld ,request):
-   - retrieve(selef ,request , pk=None):
-   - update(self, request, pk=None):
-   - partial_update(self ,request, pk=None):
-   - destroy(self, request , pk=None): 
+    - list(self,request): 
+    - create(seld ,request):
+    - retrieve(selef ,request , pk=None):
+    - update(self, request, pk=None):
+    - partial_update(self ,request, pk=None):
+    - destroy(self, request , pk=None): 
 
   - Perfect for standard database operations .
   - Fastest way to make a database interface .
